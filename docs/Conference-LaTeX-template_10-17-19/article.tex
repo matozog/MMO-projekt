@@ -32,7 +32,7 @@ classification, imbalance, uci repository, random forest
 \section{Wprowadzenie}
 Wraz z rosnącą liczbą danych rośnie zapotrzebowanie na struktury oraz algorytmy, które będą je efektywnie przetwarzać i analizować. W niniejszej pracy poruszony zostanie aspekt medyczny dotyczący wykrywania choroby Parkinsona na podstawie analizy próbek głosu zebranych od grupy pacjentów. Jest to zwyrodnieniowa choroba ośrodkowego układu nerwowego powodująca zmiany komórek nerwowych w istocie czarnej i innych obszarach barwnikonośnych mózgowia. Jednym z skutków tej choroby są trudności w artykułowaniu słów, co ma nam pomóc podczas jej diagnozy. \\
 \indent Oprócz drzew decyzyjnych jest wiele innych różnego typu metod sztucznego uczenia wykorzystywanych w procesie klasyfikacji m. inn.: sztuczne sieci neuronowe, algorytmy minimalno-odległościowe, algorytm Bayesa. W większości problemów drzewa decyzyjne nie osiągają najlepszych wyników, lecz ich główną zaletą jest prostota w zrozumieniu, co może w niektórych dziedzinach okazać się kluczowe. Dodatkowo można je łatwo konwertować w zbiór zasad i reguł. \\
-\indent %opisac co będzie w poszczególnych aspektach pracy
+\indent W kolejnych częściach pracy przedstawione zostało rozwiązanie opisanego wyżej problemu wraz z przeprowadzonymi badaniami. W sekcji 2 wspomniane zostały artykuły o powiązanej tematyce. Część 3 i 4 zawiera opis użytych algorytmów oraz metodę ich implementacji w aplikacji WEKA. W sekcji 5 i 6 przedstawione został opis badań wraz z testami statystycznymi. Ostatnia część zawiera wyciągnięte wnioski i spostrzeżenia. 
 
 \section{Powiązane prace}
 	W literaturze naukowej możemy znaleźć bardzo wiele artykułów podejmujących próby rozwiązywania problemów klasyfikacyjnych przy pomocy algorytmów drzewiastych m.inn. użytych w niniejszej pracy. Efektywne przetwarzanie i analiza danych są aktualnie bardzo modne, co powoduje, że wykorzystywane są w różnorakich dziedzinach życia i nauki.\\ 
@@ -44,6 +44,23 @@ Wraz z rosnącą liczbą danych rośnie zapotrzebowanie na struktury oraz algory
  
 
 \section{Opis zastosowanych klasyfikatorów}
+Drzewa decyzyjne stanowią nadzorowane podejście w problemach klasyfikacyjnych. Oznacza to, że potrzebny jest nadzór nauczyciela przy tworzeniu funkcji odwzorowującej wejście systemu. Jest to możliwe dzięki posiadanej przez niego wiedzy.
+Przykład takiej struktury możemy zobaczyć na rysunku \ref{drzewo_decyzyjne}. Ogólnie drzewa przedstawiają możliwe decyzje (atrybuty) oraz ich konsekwencje. Składają się zazwyczaj z jednego korzenia, gałęzi, węzłów oraz liści obrazujących poszczególne klasy. Drzewo budowane jest zazwyczaj od lewej do prawej strony bądź od korzenia w dół. Każdy węzeł odpowiada za jedną z cech natomiast na węźle przedstawiane są możliwe dla niej wartości rożnego typu (liczbowe, binarne itp.). Algorytmy drzewiaste budują takie drzewa tak, aby osiągnąć jak najlepsze wyniki klasyfikacyjne. Poniżej pokrótce opisane zostały wykorzystywane w niniejszej pracy klasyfikatory. 
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale=0.4]{pic/drzewo_decyzyjne.jpg}}
+\caption{Przykładowe drzewo decyzyjne.}
+\label{drzewo_decyzyjne}
+\end{figure}
+
+\subsection{Random Forest}
+
+
+\subsection{REPTree}
+
+
+\subsection{Random Tree}
+
 
 \section{Implementacja}
 
