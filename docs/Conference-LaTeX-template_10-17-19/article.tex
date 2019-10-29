@@ -53,14 +53,14 @@ Przykład takiej struktury możemy zobaczyć na rysunku \ref{drzewo_decyzyjne}. 
 \label{drzewo_decyzyjne}
 \end{figure}
 
-\subsection{Random Forest}
-Jest to metoda polegająca na tworzeniu wielu drzew decyzyjnych posiadających losowe atrybuty w poszczególnych węzłach. Podczas klasyfikacji, każde drzewo przyporządkowuje obiekt do jednej z grup. Wygrywa klasa, która dominuje w wynikach całego zbioru (lasu) - jest dominantą. Model taki może być stosowany gdy obiekty posiadają bardzo dużą liczbę cech i skonstruowanie drzewa posiadającego większa ilość atrybutów  jest niemożliwe. Dodatkowo są bardzo dobrym sposobem uśredniania wielu głębokich modeli drzew decyzyjnych, które mają tendencje do nadmiernego dopasowywania się do zestawów treningowych.
-
 \subsection{Reducing Error Pruning Tree}
 Jest szybką metodą uczenia drzew decyzyjnych. Budowane jest poprzez wykorzystanie zysku informacji, wnoszonej przez poszczególną cechę, jako kryterium podziału drzewa. Następnym krokiem jest przycięcia drzewa, w taki sposób, aby pozbyć się węzłów wnoszących jak najmniej informacji o klasach. Przycinanie rozpoczyna się od dołu, następnie poszczególne węzły zastępowane są najbardziej popularną klasą. Zredukowane drzewo poddawane jest testowi efektywności. Jeśli wyniki są satysfakcjonujące, zmiana zostaje zachowana, w przeciwnym wypadku jest cofana.
 
 \subsection{Random Tree}
+Polega na wybraniu losowego drzewa decyzyjnego z całej możliwej przestrzeni. Dokładniej, na podstawie wylosowanego podzbioru atrybutów tworzone są kolejne węzły. Podczas podziału drzewa cechy mogą być posortowane od przynoszących największy zysk informacji do tych mniej kluczowych. Efektem tego jest pojedyncza instancja dokonująca klasyfikacji. Aby zwiększać efektywność takiego rozwiązania stosuje się dodatkowe metody wspomagające tj. bagging i boosting. Dziedzina związana z losowymi drzewami w ostatnich latach jest szeroko opracowywana i ulepszana.
 
+\subsection{Random Forest}
+Jest to metoda polegająca na tworzeniu wielu drzew decyzyjnych posiadających losowe atrybuty w poszczególnych węzłach. Jest bardzo podobny do omawianego wcześniej algorytmu Random Tree, z  tą różnicą, że budowanych jest więcej instancji. a nie tylko jedna. Podczas klasyfikacji, każde drzewo przyporządkowuje obiekt do jednej z grup. Wygrywa klasa, która dominuje w wynikach całego zbioru (lasu) - jest dominantą. Model taki może być stosowany gdy obiekty posiadają bardzo dużą liczbę cech i skonstruowanie drzewa posiadającego większa ilość atrybutów  jest niemożliwe. Dodatkowo są bardzo dobrym sposobem uśredniania wielu głębokich modeli drzew decyzyjnych, które mają tendencje do nadmiernego dopasowywania się do zestawów treningowych.
 
 \section{Implementacja}
 
