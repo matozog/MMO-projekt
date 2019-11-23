@@ -6,8 +6,10 @@
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
+\usepackage{float}
 \usepackage{polski}
 \usepackage{xcolor}
+\usepackage{caption}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -19,7 +21,10 @@
 \IEEEaftertitletext{\begin{center}
 Październik 25, 2019 \\
 \end{center}}
+
 \maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
 
 \begin{abstract}
 Dokument ten przedstawia porównanie algorytmów drzewiastych w problemie klasyfikacyjnym związanym z detekcją choroby Parkinsona u osób starszych. W niniejszym artykule przedstawione zostaną klasyfikatory tj.: Random Forest, Reduced Error Pruning Tree (REPTree) raz Random Tree. W celu porównania algorytmów przeprowadzone zostały testy statystyczne oraz wyciągnięto na ich podstawie odpowiednie wnioski. Do przeprowadzenia badań wykorzystano implementacje klasyfikatorów z programu WEKA (Waikato Environment for Knowledge Analysis)\footnote{https://www.cs.waikato.ac.nz/ml/index.html}.
@@ -37,9 +42,9 @@ Wraz z rosnącą liczbą danych rośnie zapotrzebowanie na struktury oraz algory
 \section{Powiązane prace}
 	W literaturze naukowej możemy znaleźć bardzo wiele artykułów podejmujących próby rozwiązywania problemów klasyfikacyjnych przy pomocy algorytmów drzewiastych m.inn. użytych w niniejszej pracy. Efektywne przetwarzanie i analiza danych są aktualnie bardzo modne, co powoduje, że wykorzystywane są w różnorakich dziedzinach życia i nauki.\\ 
 \indent	Jedną z takich prac podejmującą klasyfikację w dziedzinie astronomii jest artykuł Yongheng Zhoa i Yanxia Zhanga, który porównuje klasyfikatory wykorzystujące schemat drzewa w celu wyszukiwania aktywnych obiektów w kosmosie. Badania odbyły się na podstawie niezbalansowanego zbioru danych zawierającego m.inn.: 3718 gwiazd, 173 normalnych galaktyk, 909 kwazarów, 612 aktywnych galaktyk optycznych itd. Do klasyfikacji wykorzystano następujące algorytmy: REPTree, Random Tree, Decision Stump, Random Forest, J48, NBTree i AdTree. Do przeprowadzenia badań zostały wykorzystane implementacje z programu WEKA wraz z domyślnie ustawionymi parametrami. Najlepszy wynik osiągnął klasyfikator ADTree oraz NBTree (ponad 97\%). W kontekście niniejszej pracy oraz porównywanych w niej algorytmów najlepiej wypadł Random Forest (około 97\%), trochę gorzej Random Tree - 87\% oraz REPTree - około 80\%. Jednak porównując złożoności czasowe RF był najwolniejszy, nawet 10-krotnie w stosunku do pozostałych dwóch klasyfikatorów. \cite{b1} \\
-\indent W artykule Mohmad Badr Al Snousy i in. została porównana wydajność 9 metod drzew decyzyjnych, które miały na celu pomóc w dziedzinie klasyfikacji chorób nowotworowych. Trudność tej klasyfikacji polega na tym, że tylko kilka cech (genów) przedstawia istotne atrybuty dla badanej choroby oraz dodatkowo przeszkadza występowanie szumu biologicznego oraz technicznego. Badania pokazały, że metody próbkowania AdaBoost, Bagging and Random Forest znacznie poprawiają dokładność klasyfikacji drzewa pojedynczej decyzji. Patrząc na algorytmy Random Tree, Random Forest oraz REPTree nie udało się jednoznacznie stwierdzić, który z nich posiada największą efektywność. W zależności od zbioru danych wyniki różniły się. Na przykład dla raka piersi otrzymano wyniki: RF - 98\%, REPTree - 94\%, RT - 94\%, dla białaczki natomiast: REPTree - 90\%, RF - 86\%, RT - 74\%, co pokazuje, że dobór metody zależy od konkretnego zbioru danych. W większości przypadków jednak najlepszą metodą okazał się klasyfikator Random Forest. \cite{b4} \\
+\indent W artykule Mohmad Badr Al Snousy i in. została porównana wydajność 9 metod drzew decyzyjnych, które miały na celu pomóc w dziedzinie klasyfikacji chorób nowotworowych. Trudność tej klasyfikacji polega na tym, że tylko kilka cech (genów) przedstawia istotne atrybuty dla badanej choroby oraz dodatkowo przeszkadza występowanie szumu biologicznego oraz technicznego. Badania pokazały, że metody próbkowania AdaBoost, Bagging i Random Forest znacznie poprawiają dokładność klasyfikacji drzewa pojedynczej decyzji. Patrząc na algorytmy Random Tree, Random Forest oraz REPTree nie udało się jednoznacznie stwierdzić, który z nich posiada największą efektywność. W zależności od zbioru danych wyniki różniły się. Na przykład dla raka piersi otrzymano wyniki: RF - 98\%, REPTree - 94\%, RT - 94\%, dla białaczki natomiast: REPTree - 90\%, RF - 86\%, RT - 74\%, co pokazuje, że dobór metody zależy od konkretnego zbioru danych. W większości przypadków jednak najlepszą metodą okazał się klasyfikator Random Forest. \cite{b4} \\
 \indent W pracy naukowców z Uniwersytetu w Malezji poruszono problem wydajności drzew decyzyjnych dla klasyfikacji grupy studentów do jednej z kategorii, określającej pewien stopień ich wiedzy (ekspert i nowicjusz). Badanie oparte było na podstawie kwestionariusza, który studenci musieli sami wypełnić. Głównym zadaniem było znalezienie zadanych informacji poprzez wyszukiwarkę internetową. W badaniu wzięło udział 34 studentów studiów magisterskich i 76 doktorantów z różnych wydziałów. W ostatecznym rozrachunku najlepszą wydajność uzyskał klasyfikator J48 oraz Random Forest osiągając poziom ponad 92\% dokładności. Random Tree oraz REPTree uzyskali odpowiednio 91\% oraz 90\% co również jest bardzo dobrym wynikiem. \cite{b3} \\
-\indent Pan Sushilkumar Kalmegh z Uniwersytetu w Amravati porównał drzewa decyzyjne w procesie rozpoznawania wiadomości, a dokładniej klasyfikacji ich do jednej z grupy określającej ich rodzaj. W pracy zastosował algorytmy: RF, REPTree oraz Simple Cart, korzystając z implementacji wykorzystanej w programie WEKA. W zbiorze danych znajdowało się 	649 artykułów z różnych krajów, podzielonych na 7 kategorii. Problem dotyczył dane niezbalansowanych na co wskazuje stosunek liczby artykułów technologicznych (39) i politycznych (153). Wyniki pracy okazały się dość zaskakujące, gdyż klasyfikatory REPTree oraz SC nie radziły sobie prawie w ogóle z tym zadaniem. Jedyną grupą poprawnie klasyfikowanych wiadomości były artykułu związane z polityką. Bardzo dobry wynik uzyskał natomiast algorytm Random Forest osiągający 100\% skuteczności. Wynik taki może być spowodowany przeuczeniem klasyfikatora bądź nieudolną formą wstępnego przetworzenia danych wejściowych, z którymi sobie ewidentnie nie radziły pozostałe algorytmy.
+\indent Pan Sushilkumar Kalmegh z Uniwersytetu w Amravati porównał drzewa decyzyjne w procesie rozpoznawania wiadomości, a dokładniej klasyfikacji ich do jednej z grupy określającej ich rodzaj. W pracy zastosował algorytmy: RF, REPTree oraz Simple Cart, korzystając z implementacji wykorzystanej w programie WEKA. W zbiorze danych znajdowało się 	649 artykułów z różnych krajów, podzielonych na 7 kategorii. Problem dotyczył danych niezbalansowanych na co wskazuje stosunek liczby artykułów technologicznych (39) i politycznych (153). Wyniki pracy okazały się dość zaskakujące, gdyż klasyfikatory REPTree oraz SC nie radziły sobie prawie w ogóle z tym zadaniem. Jedyną grupą poprawnie klasyfikowanych wiadomości były artykułu związane z polityką. Bardzo dobry wynik uzyskał natomiast algorytm Random Forest osiągający 100\% skuteczności. Wynik taki może być spowodowany przeuczeniem klasyfikatora bądź nieudolną formą wstępnego przetworzenia danych wejściowych, z którymi sobie ewidentnie nie radziły pozostałe algorytmy.
 	
  
 
@@ -62,11 +67,86 @@ Polega na wybraniu losowego drzewa decyzyjnego z całej możliwej przestrzeni. D
 \subsection{Random Forest}
 Jest to metoda polegająca na tworzeniu wielu drzew decyzyjnych posiadających losowe atrybuty w poszczególnych węzłach. Jest bardzo podobny do omawianego wcześniej algorytmu Random Tree, z  tą różnicą, że budowanych jest więcej instancji. a nie tylko jedna. Podczas klasyfikacji, każde drzewo przyporządkowuje obiekt do jednej z grup. Wygrywa klasa, która dominuje w wynikach całego zbioru (lasu) - jest dominantą. Model taki może być stosowany gdy obiekty posiadają bardzo dużą liczbę cech i skonstruowanie drzewa posiadającego większa ilość atrybutów  jest niemożliwe. Dodatkowo są bardzo dobrym sposobem uśredniania wielu głębokich modeli drzew decyzyjnych, które mają tendencje do nadmiernego dopasowywania się do zestawów treningowych.
 
-\section{Implementacja}
+\section{Implementacja oraz opis danych testowych}
+Do przeprowadzenia eksperymentów autorzy niniejszej pracy wykorzystali ogólnodostępne oraz popularne środowisko WEKA. Służy ono do analizy danych i zawiera między innymi takie etap jak: wstępne przetwarzanie danych, klasyfikacja, regresja, klasteryzacja oraz wizualizacja dla różnego rodzaju algorytmów. Opis środowiska możemy znaleźć w książce Ian H. Witten i Eibe Franka. Źródła aplikacji oraz implementowanych algorytmów są ogólnodostępne. Razem zaimplementowanych jest w niej ponad 60 metod z dziedziny uczenia maszynowego. 
+
+% opisac dane testowe
 
 \section{Przeprowadzone badania}
+Przed przystąpieniem do badań przeprowadzona została normalizacja wykorzystywanego zbioru opisanego w punkcie powyżej. Następnie wykonano 5-krotną walidację krzyżową, którą w celu uzyskania dokładniejszych wyników powtórzono 10 razy. Każdy algorytm został przetestowany na poszczególnym zbiorze testowym, w związku z czym łącznie uzyskano 150 rezultatów ( 5 * 10 * 3, gdzie 3 oznacza liczbę testowanych klasyfikatorów). Otrzymane wyniki klasyfikacji po uśrednieniu dla każdego zbioru testowego zostały przedstawione poniżej w tabeli nr 1. Wartości w nawiasach oznaczają odchylenia standardowe.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale=0.75]{pic/glowna_tabela.png}}
+\caption{Tabela przedstawiająca uśrednione wyniki klasyfikacji z każego zbioru testowego.}
+\label{drzewo_decyzyjne}
+\end{figure}
+
+Ogólne średnie wyniki uzyskane przez każdy z klasyfikatorów możemy zobaczyć poniżej na rysunku X.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale=0.8]{pic/accuracy.png}}
+\caption{Porównanie średnich wyników dokładności klasyfikacji.}
+\label{drzewo_decyzyjne}
+\end{figure}
+
+Najlepszy rezultat osiągnął algorytm Random Forest, jednak pozostałe techniki również bardzo dobrze radziły sobie z tym problemem. Wykres przedstawiający uśrednione wyniki klasyfikacji dla poszczególnych zbiorów testowych, które zostały przedstawione w tabeli 1 znajduje się poniżej na rysunku X. Możemy zauważyć przewagę jaką uzyskał algorytm Random Forest dla każdego z testowanych podzbiorów. 
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale=0.65]{pic/CV_chart.png}}
+\caption{Wykres porównujący osiągane wyniki przez algorytmy dla każdego zbioru testowego.}
+\label{drzewo_decyzyjne}
+\end{figure}
 
 \section{Testy statystyczne oraz porównanie wyników}
+Aby zweryfikować prawdziwość stwierdzenia, że klasyfikator Random Forest jest lepszy od pozostałych technik dla podanego problemu przeprowadzono odpowiednie testy statystyczne. 
+Jednym z takich testów jest test Wilcoxona, który jest nieparametryczną alternatywą dla testu t-Studenta w przypadku dwóch równolicznych próbek, które są łączone w pary. Dzięki niemu możemy zbadać hipotezę mówiąca o istotnej różnicy pomiędzy wynikami poszczególnych klasyfikatorów. W pierwszym porównaniu zostały zaprezentowane wyniki algorytmu Random Forest oraz Random Tree (tabela I poniżej). 
+
+\begin{table}[H]
+\captionof{table}{Porównanie wyników RF i RT w teście Wilcoxona} 
+
+	\begin{tabular}{|p{0.16\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.11\linewidth}|}%{|l|l|}
+	\hline\centering
+	Klasyfikator 	& Test 1 & Test 2 & Test 3 & Test 4 & Test 5 \\ \hline\centering
+	Random Forest	& 87,95\% & 91,54\% & 92,31\% & 90,78\% & 92,31\% \\ \hline\centering
+	Random Tree	& 83,08\% & 88,46\% & 88,97\% & 86,15\% & 85,9\% \\ \hline\centering
+	Znak	& + & + & + & + & + \\ \hline\centering
+	Moduł różnicy	& 4,87 & 3,08 & 3,34 & 4,63 & 6,41 \\ \hline\centering
+	Ranga	& 4 & 1 & 2 & 3 & 5 \\ \hline
+	\end{tabular}
+\end{table}
+Kolejnym etapem testu jest wyliczenie wag dla każdego wyniku w danym zbiorze. Zostały one przedstawione w tabeli powyżej. Ustalane są na podstawie różnic pomiędzy poszczególnymi wynikami. Im większa różnica tym ranga danego testu jest wyższa. Po uzyskaniu odpowiednich wag zostaje wyliczone wartość W- oraz W+, która określi statystykę oraz poprawność założonej hipotezy. W tym przypadku wszystkie rangi są z znakiem dodatnim, więc wartość W+ będzie wynosiła 15. Wartości krytyczne, aby odrzucić hipotezę powinny znaleźć się w przedziale <0,2> (alfa <0.1). Oznacza to, że możemy stwierdzić iż algorytm Random Forest jest lepszy od klasyfikatora Random Tree. 
+
+Kolejne porównanie znajduje się poniżej w tabeli II. Wartość W- wynosi 1, natomiast W+ 14. Do testu statystycznego wykorzystuje się minimalną wartość z tych zmiennych. W związku z tym mieści się w zakresie <0;2> przyjętym dla progu istotności alfa = 0.1. Oznacza to, że nie możemy stwierdzić, że algorytm RandomTree jest lepszy od algorytmu REPTree.  
+
+\begin{table}[H]
+\captionof{table}{Porównanie wyników RT i REPTree w teście Wilcoxona} 
+
+	\begin{tabular}{|p{0.16\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.11\linewidth}|}%{|l|l|}
+	\hline\centering
+	Klasyfikator 	& Test 1 & Test 2 & Test 3 & Test 4 & Test 5 \\ \hline\centering
+	Random Tree	& 83,08\% & 88,46\% & 88,97\% & 86,15\% & 85,9\% \\ \hline\centering
+	REPTree	& 84,1\% & 85,13\% & 83,33\% & 84,1\% & 83,33\% \\ \hline\centering
+	Znak	& - & + & + & + & + \\ \hline\centering
+	Moduł różnicy  & 1,02 & 3,33 & 5,64 & 2,05 & 2,57  \\ \hline\centering
+	Ranga	& -1 & 4 & 5 & 2 & 3 \\ \hline
+	\end{tabular}
+\end{table} 
+
+W ostatnim porównaniu przedstawiono klasyfikatory Random Forest i REPTree. Otrzymane rangi są identyczne jak w przypadku porównania RT z Random Tree. W+ wynosi 15, w związku z czym możemy stwierdzić, że algorytm Random Forest jest statystycznie lepszy od klasyfikatora REPTree.
+
+\begin{table}[H]
+\captionof{table}{Porównanie wyników RT i REPTree w teście Wilcoxona} 
+
+	\begin{tabular}{|p{0.16\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.11\linewidth}|}%{|l|l|}
+	\hline\centering
+	Klasyfikator 	& Test 1 & Test 2 & Test 3 & Test 4 & Test 5 \\ \hline\centering
+	Random Forest	& 87,95\% & 91,54\% & 92,31\% & 90,78\% & 92,31\% \\ \hline\centering
+	REPTree	& 84,1\% & 85,13\% & 83,33\% & 84,1\% & 83,33\% \\ \hline\centering
+	Znak	& + & + & + & + & + \\ \hline\centering
+	Moduł różnicy  & 3,85 & 6,41 & 8,98 & 6,68 & 8,98  \\ \hline\centering
+	Ranga	& 1 & 4 & 5 & 2 & 3 \\ \hline
+	\end{tabular}
+\end{table}
 
 \section{Konkluzja}
 
