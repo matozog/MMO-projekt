@@ -114,9 +114,9 @@ Jednym z takich testów jest test Wilcoxona, który jest nieparametryczną alter
 	Ranga	& 4 & 1 & 2 & 3 & 5 \\ \hline
 	\end{tabular}
 \end{table}
-Kolejnym etapem testu jest wyliczenie wag dla każdego wyniku w danym zbiorze. Zostały one przedstawione w tabeli powyżej. Ustalane są na podstawie różnic pomiędzy poszczególnymi wynikami. Im większa różnica tym ranga danego testu jest wyższa. Po uzyskaniu odpowiednich wag zostaje wyliczone wartość W- oraz W+, która określi statystykę oraz poprawność założonej hipotezy. W tym przypadku wszystkie rangi są z znakiem dodatnim, więc wartość W+ będzie wynosiła 15. Wartości krytyczne, aby odrzucić hipotezę powinny znaleźć się w przedziale <0,2> (alfa <0.1). Oznacza to, że możemy stwierdzić iż algorytm Random Forest jest lepszy od klasyfikatora Random Tree. 
+Pierwszym etapem testu jest wyliczenie wag dla każdego wyniku w danym zbiorze. Zostały one przedstawione w tabeli powyżej. Ustalane są na podstawie różnic pomiędzy poszczególnymi wynikami. Im większa różnica tym ranga danego testu jest wyższa. Po uzyskaniu odpowiednich wag zostaje wyliczone wartość W- oraz W+, która określi statystykę oraz poprawność założonej hipotezy. W tym przypadku wszystkie rangi są z znakiem dodatnim, więc wartość W+ będzie wynosiła 15. Wartości krytyczne, aby odrzucić hipotezę powinny znaleźć się w przedziale <0,2> (alfa <0.1). Oznacza to, że możemy stwierdzić iż algorytm Random Forest jest lepszy od klasyfikatora Random Tree. 
 
-Kolejne porównanie znajduje się poniżej w tabeli II. Wartość W- wynosi 1, natomiast W+ 14. Do testu statystycznego wykorzystuje się minimalną wartość z tych zmiennych. W związku z tym mieści się w zakresie <0;2> przyjętym dla progu istotności alfa = 0.1. Oznacza to, że nie możemy stwierdzić, że algorytm RandomTree jest lepszy od algorytmu REPTree.  
+Kolejne porównanie znajduje się poniżej w tabeli II. Wartość W- wynosi 1, natomiast W+ 14. Do testu statystycznego wykorzystuje się minimalną wartość z tych zmiennych. W związku z tym mieści się ona w zakresie <0;2> przyjętym dla progu istotności alfa = 0.1. Oznacza to, że nie możemy stwierdzić, że algorytm RandomTree jest lepszy od algorytmu REPTree.  
 
 \begin{table}[H]
 \captionof{table}{Porównanie wyników RT i REPTree w teście Wilcoxona} 
