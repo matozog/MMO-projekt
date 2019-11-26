@@ -70,23 +70,23 @@ Jest to metoda polegająca na tworzeniu wielu drzew decyzyjnych posiadających l
 \section{Implementacja oraz opis danych testowych}
 Do przeprowadzenia eksperymentów autorzy niniejszej pracy wykorzystali ogólnodostępne oraz popularne środowisko WEKA. Służy ono do analizy danych i zawiera między innymi takie etap jak: wstępne przetwarzanie danych, klasyfikacja, regresja, klasteryzacja oraz wizualizacja dla różnego rodzaju algorytmów. Opis środowiska możemy znaleźć w książce Ian H. Witten i Eibe Franka. Źródła aplikacji oraz implementowanych algorytmów są ogólnodostępne. Razem zaimplementowanych jest w niej ponad 60 metod z dziedziny uczenia maszynowego. 
 
-% opisac dane testowe
+Zestaw danych testowych został pobrany ze strony Uniwersytetu Kalifornijskiego (UCI)\footnote{https://archive.ics.uci.edu/ml/datasets/Parkinsons}. Składał się z 195 instancji, z których każdą opisywał zbiór 22 cech. Atrybuty dotyczyły częstotliwości głosu badanej osoby, która została przypisana do jednej z dwóch klas - zdrowa(48 instancji) bądź chora(147 instancji). 
 
 \section{Przeprowadzone badania}
-Przed przystąpieniem do badań przeprowadzona została normalizacja wykorzystywanego zbioru opisanego w punkcie powyżej. Następnie wykonano 5-krotną walidację krzyżową, którą w celu uzyskania dokładniejszych wyników powtórzono 10 razy. Każdy algorytm został przetestowany na poszczególnym zbiorze testowym, w związku z czym łącznie uzyskano 150 rezultatów ( 5 * 10 * 3, gdzie 3 oznacza liczbę testowanych klasyfikatorów). Otrzymane wyniki klasyfikacji po uśrednieniu dla każdego zbioru testowego zostały przedstawione poniżej w tabeli nr 1. Wartości w nawiasach oznaczają odchylenia standardowe.
+Przed przystąpieniem do badań przeprowadzona została normalizacja wykorzystywanego zbioru opisanego w punkcie powyżej. Następnie wykonano 5-krotną walidację krzyżową, którą w celu uzyskania dokładniejszych wyników powtórzono 10 razy. Każdy algorytm został przetestowany na poszczególnym zbiorze testowym, w związku z czym łącznie uzyskano 150 rezultatów ( 5 * 10 * 3, gdzie 3 oznacza liczbę testowanych klasyfikatorów). Otrzymane wyniki klasyfikacji po uśrednieniu dla każdego zbioru testowego zostały przedstawione poniżej na rysunku nr \ref{mainTable}. Wartości w nawiasach oznaczają odchylenia standardowe.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[scale=0.75]{pic/glowna_tabela.png}}
 \caption{Tabela przedstawiająca uśrednione wyniki klasyfikacji z każego zbioru testowego.}
-\label{drzewo_decyzyjne}
+\label{mainTable}
 \end{figure}
 
-Ogólne średnie wyniki uzyskane przez każdy z klasyfikatorów możemy zobaczyć poniżej na rysunku X.
+Ogólne średnie wyniki uzyskane przez każdy z klasyfikatorów możemy zobaczyć poniżej na rysunku \ref{accuracy}.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[scale=0.8]{pic/accuracy.png}}
 \caption{Porównanie średnich wyników dokładności klasyfikacji.}
-\label{drzewo_decyzyjne}
+\label{accuracy}
 \end{figure}
 
 Najlepszy rezultat osiągnął algorytm Random Forest, jednak pozostałe techniki również bardzo dobrze radziły sobie z tym problemem. Wykres przedstawiający uśrednione wyniki klasyfikacji dla poszczególnych zbiorów testowych, które zostały przedstawione w tabeli 1 znajduje się poniżej na rysunku X. Możemy zauważyć przewagę jaką uzyskał algorytm Random Forest dla każdego z testowanych podzbiorów. 
@@ -104,7 +104,7 @@ Jednym z takich testów jest test Wilcoxona, który jest nieparametryczną alter
 \begin{table}[H]
 \captionof{table}{Porównanie wyników RF i RT w teście Wilcoxona} 
 
-	\begin{tabular}{|p{0.16\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.11\linewidth}|}%{|l|l|}
+	\begin{tabular}{|p{0.16\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|}%{|l|l|}
 	\hline\centering
 	Klasyfikator 	& Test 1 & Test 2 & Test 3 & Test 4 & Test 5 \\ \hline\centering
 	Random Forest	& 87,95\% & 91,54\% & 92,31\% & 90,78\% & 92,31\% \\ \hline\centering
@@ -114,14 +114,14 @@ Jednym z takich testów jest test Wilcoxona, który jest nieparametryczną alter
 	Ranga	& 4 & 1 & 2 & 3 & 5 \\ \hline
 	\end{tabular}
 \end{table}
-Pierwszym etapem testu jest wyliczenie wag dla każdego wyniku w danym zbiorze. Zostały one przedstawione w tabeli powyżej. Ustalane są na podstawie różnic pomiędzy poszczególnymi wynikami. Im większa różnica tym ranga danego testu jest wyższa. Po uzyskaniu odpowiednich wag zostaje wyliczone wartość W- oraz W+, która określi statystykę oraz poprawność założonej hipotezy. W tym przypadku wszystkie rangi są z znakiem dodatnim, więc wartość W+ będzie wynosiła 15. Wartości krytyczne, aby odrzucić hipotezę powinny znaleźć się w przedziale <0,2> (alfa <0.1). Oznacza to, że możemy stwierdzić iż algorytm Random Forest jest lepszy od klasyfikatora Random Tree. 
+Kolejnym etapem testu jest wyliczenie wag dla każdego wyniku w danym zbiorze. Zostały one przedstawione w tabeli powyżej. Ustalane są na podstawie różnic pomiędzy poszczególnymi wynikami. Im większa różnica tym ranga danego testu jest wyższa. Po uzyskaniu odpowiednich wag zostaje wyliczone wartość W- oraz W+, która określi statystykę oraz poprawność założonej hipotezy. W tym przypadku wszystkie rangi są z znakiem dodatnim, więc wartość W+ będzie wynosiła 15. Wartości krytyczne, aby odrzucić hipotezę powinny znaleźć się w przedziale $\langle$0,2$\rangle$ (poziom istotności 0.1). Oznacza to, że możemy stwierdzić iż algorytm Random Forest jest lepszy od klasyfikatora Random Tree. 
 
-Kolejne porównanie znajduje się poniżej w tabeli II. Wartość W- wynosi 1, natomiast W+ 14. Do testu statystycznego wykorzystuje się minimalną wartość z tych zmiennych. W związku z tym mieści się ona w zakresie <0;2> przyjętym dla progu istotności alfa = 0.1. Oznacza to, że nie możemy stwierdzić, że algorytm RandomTree jest lepszy od algorytmu REPTree.  
+Kolejne porównanie znajduje się poniżej w tabeli II. Wartość W- wynosi 1, natomiast W+ 14. Do testu statystycznego wykorzystuje się minimalną wartość z tych zmiennych. W związku z tym mieści się ona w zakresie $\langle$0;2$\rangle$ przyjętym dla progu istotności alfa = 0.1. Oznacza to, że nie możemy stwierdzić, że algorytm RandomTree jest lepszy od algorytmu REPTree.  
 
 \begin{table}[H]
 \captionof{table}{Porównanie wyników RT i REPTree w teście Wilcoxona} 
 
-	\begin{tabular}{|p{0.16\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.11\linewidth}|}%{|l|l|}
+	\begin{tabular}{|p{0.16\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|}%{|l|l|}
 	\hline\centering
 	Klasyfikator 	& Test 1 & Test 2 & Test 3 & Test 4 & Test 5 \\ \hline\centering
 	Random Tree	& 83,08\% & 88,46\% & 88,97\% & 86,15\% & 85,9\% \\ \hline\centering
@@ -137,7 +137,7 @@ W ostatnim porównaniu przedstawiono klasyfikatory Random Forest i REPTree. Otrz
 \begin{table}[H]
 \captionof{table}{Porównanie wyników RT i REPTree w teście Wilcoxona} 
 
-	\begin{tabular}{|p{0.16\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.11\linewidth}|}%{|l|l|}
+	\begin{tabular}{|p{0.16\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|}%{|l|l|}
 	\hline\centering
 	Klasyfikator 	& Test 1 & Test 2 & Test 3 & Test 4 & Test 5 \\ \hline\centering
 	Random Forest	& 87,95\% & 91,54\% & 92,31\% & 90,78\% & 92,31\% \\ \hline\centering
